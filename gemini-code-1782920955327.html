@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный агент экспертов | Марина Кирина</title>
+    <style>
+        :root {
+            --bg-color: #fcf9f5; /* Благородный премиальный бежевый (слоновая кость) */
+            --surface-color: #f5efe6; /* Теплый песок для карточек */
+            --text-color: #1a1512; /* Глубокий кофейно-графитовый для максимальной читаемости */
+            --text-muted: #665951; /* Приглушенный земляной */
+            --accent-color: #c5a059; /* Матовое золото */
+            --border-color: #e6ded4; /* Тонкие кофейные границы */
+            --alert-color: #a63f3f; /* Спокойный благородный красный для фильтров */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            padding: 0 20px;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 80px 0;
+        }
+
+        header {
+            margin-bottom: 80px;
+            max-width: 750px;
+        }
+
+        .date-badge {
+            font-size: 0.8rem;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            display: inline-block;
+            font-weight: 600;
+        }
+
+        h1 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 30px;
+            letter-spacing: -1px;
+            color: var(--text-color);
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            margin-top: 80px;
+            margin-bottom: 35px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--text-color);
+            color: var(--bg-color);
+            padding: 18px 36px;
+            font-weight: 600;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            border: 1px solid var(--text-color);
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+            color: #fff;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-color);
+            border: 1px solid var(--text-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--surface-color);
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background: var(--border-color);
+            margin: 60px 0;
+        }
+
+        /* Блок Автора с фото */
+        .author-section {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 40px;
+            align-items: start;
+            margin-top: 40px;
+        }
+
+        .author-image-container {
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .author-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .author-placeholder {
+            position: absolute;
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .author-facts div {
+            margin-bottom: 20px;
+        }
+
+        .author-facts h4 {
+            font-size: 1.15rem;
+            color: var(--text-color);
+            margin-bottom: 5px;
+        }
+
+        .author-facts p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .author-section { grid-template-columns: 1fr; }
+            .author-image-container { max-width: 400px; margin: 0 auto; order: -1; }
+            h1 { font-size: 2.4rem; }
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2 { grid-template-columns: 1fr; }
+        }
+
+        .card {
+            background-color: var(--surface-color);
+            padding: 35px;
+            border: 1px solid var(--border-color);
+        }
+
+        .card h3 {
+            margin-bottom: 15px;
+            color: var(--text-color);
+            font-size: 1.3rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .card.negative {
+            border-top: 4px solid var(--alert-color);
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        ul li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 20px;
+            color: var(--text-muted);
+        }
+
+        ul li strong {
+            color: var(--text-color);
+        }
+
+        ul li::before {
+            content: "—";
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            margin: 30px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th, td {
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: top;
+        }
+
+        th {
+            color: var(--text-color);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            background-color: var(--surface-color);
+        }
+
+        blockquote {
+            border-left: 3px solid var(--accent-color);
+            padding-left: 25px;
+            font-style: italic;
+            color: var(--text-muted);
+            margin: 40px 0;
+            font-size: 1.2rem;
+        }
+
+        .final-box {
+            background-color: var(--surface-color);
+            border: 1px solid var(--text-color);
+            padding: 60px 40px;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .final-box h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--text-color);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <span class="date-badge">Модель сопровождения первого эшелона</span>
+        <h1>Я не создаю лидеров мнений.<br>Я создаю тех, с кем общаются первыми.</h1>
+        <p class="subtitle">Личное, стратегическое и психологически вовлеченное сопровождение крупных экспертов и предпринимателей до фундаментального медийного веса. Всего 1–2 человека в год.</p>
+        <div class="cta-group">
+            <a href="https://forms.gle/4qBwWzMwfsxxeCA29" target="_blank" class="btn">Заполнить анкету отбора</a>
+            <a href="https://t.me/more_kastinga" target="_blank" class="btn btn-secondary">Написать в Telegram</a>
+        </div>
+    </header>
+
+    <section>
+        <h2>Личный агент: Марина Кирина</h2>
+        <p class="subtitle" style="text-align: left;">Для предпринимателей и ЛПР, которым нужна не масс-маркет упаковка, а системное управление статусом и проявлением в высшей лиге:</p>
+        
+        <div class="author-section">
+            <div class="author-facts">
+                <div>
+                    <h4>21 год читаю людей насквозь</h4>
+                    <p>В бизнесе и медиа это решает всё. Моментально определяю истинные мотивы, сильные стороны и ментальные барьеры, которые мешают занять Олимп ниши.</p>
+                </div>
+                <div>
+                    <h4>7 лет — кастинг-директор «Дом-2»</h4>
+                    <p>Проект-феномен с точки зрения удержания внимания многомиллионной аудитории. Досконально знаю законы драматургии, удержания фокуса внимания и создания культовых медиа-имен.</p>
+                </div>
+                <div>
+                    <h4>50+ проектов на федеральных каналах и 800 000 собеседований</h4>
+                    <p>Абсолютная психологическая и визуальная насмотренность. Я видела все типы подачи и точно знаю, какая деталь заставит инвесторов, ЛПР и продюсеров слушать именно вас.</p>
+                </div>
+                <div>
+                    <h4>Бренд-режиссер и 18 лет Агент актеров</h4>
+                    <p>Более 1000 моих подопечных стали медийными, известными и богатыми. Я не занимаюсь SMM — я режиссирую ваше масштабное присутствие в инфополе.</p>
+                </div>
+            </div>
+            <div class="author-image-container">
+                <!-- Сюда автоматически встанет фото 2026-05-28 14.52.10 2.jpg, если оно в папке с сайтом -->
+                <img src="2026-05-28 14.52.10 2.jpg" alt="Марина Кирина" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="author-placeholder" style="display:none;">Марина Кирина<br>[Личный Агент]</div>
+            </div>
+        </div>
+    </section>
+
+    <hr>
+
+    <section>
+        <h2>Разрыв ассоциаций: Почему это не маркетинг</h2>
+        <p class="subtitle" style="text-align: left;">Крупный бизнес мыслит твердыми активами. Массовый SMM предлагает охваты и просмотры. Мы управляем влиянием. Вот четыре столпа модели:</p>
+        
+        <div class="grid-2">
+            <div class="card">
+                <h3>Управление инфополем</h3>
+                <p>Вместо хаотичного контента — точечные, статусные выходы, знаковые нетворкинг-связи и планомерное внедрение в круг, где принимаются ключевые решения индустрии.</p>
+            </div>
+            <div class="card">
+                <h3>Ежедневное присутствие</h3>
+                <p>Я не сторонний консультант с еженедельными отчетами. Я нахожусь внутри вашей операционной траектории, калибруя ваше состояние, логистику публичности и смыслы.</p>
+            </div>
+            <div class="card">
+                <h3>Абсолютная трезвость</h3>
+                <p>Главная функция ближнего круга — говорить жесткую, чистую правду без лести. Фильтрация внешнего окружения от токсичных элементов и удержание фокуса на главной цели.</p>
+            </div>
+            <div class="card">
+                <h3>Психологический щит</h3>
+                <p>Обеспечение вашей тотальной устойчивости перед лицом растущего масштаба и медийного давления. Защита личных границ и авторитета ЛПР.</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Честный марафон: Горизонт планирования</h2>
+        <p>Реальный путь к большому медийному весу — это <strong>марафон длиною в 1 год</strong>. Это системная работа без сиюминутной окупаемости, к которой привыкли в краткосрочных бизнес-моделях. Подкасты, знаковые выступления, закрытые клубы — это игра вдолгую.</p>
+        <blockquote>
+            «Тестовый контракт на 2 месяца — это не проверка формата "комфортно ли мне". Это жесткий тест-драйв на прочность. Проверка, способны ли мы в одной связке системно работать целый год ради фундаментального изменения вашего статуса».
+        </blockquote>
+    </section>
+
+    <section>
+        <h2>Фильтр на входе: Кого я НЕ возьму</h2>
+        <div class="grid-2">
+            <div class="card negative">
+                <h3>Вы ищете быстрый трафик</h3>
+                <p>Если ваша задача — накрутить просмотры в соцсетях или выстроить сиюминутную автоворонку продаж, вам нужны классические субподрядчики, не личный агент.</p>
+            </div>
+            <div class="card negative">
+                <h3>Отсутствие твердой базы</h3>
+                <p>Я работаю только с состоявшимися лидерами. Твердый продукт, измеримый высокий доход и масштаб личности должны быть подтверждены на входе.</p>
+            </div>
+            <div class="card negative">
+                <h3>Позиция делегирования ответственности</h3>
+                <p>Если вы ментально не готовы включаться в процесс лично и ждете, что агент решит внутренние кризисы проявления вместо вас — сотрудничество невозможно.</p>
+            </div>
+            <div class="card negative">
+                <h3>Отсутствие операционного ресурса</h3>
+                <p>Агент дает маршрут, инсайды и стратегию. Техническое ведение контента ложится на вашу личную команду. У вас должен быть ресурс развернуть её немедленно.</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Прецедент: Кейс Кузьмы Ложникова</h2>
+        <p class="subtitle" style="text-align: left;">Демонстрация работы бренд-режиссуры на примере мастера реалистичных тортов:</p>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Стартовая позиция</th>
+                        <th>Результат работы в модели</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Локальный мини-цех в Санкт-Петербурге. Единственный разрозненный медийный выход — участие в YouTube-шоу Д. Масленникова. Отсутствие долгосрочного вектора развития бренда.</td>
+                        <td>Мастер-классы и интеграции с топ-блогерами рунета. Съемка авторских серий программ на федеральном канале «Россия 1». Выход на разработку собственного масштабного шоу. Вход в элиту ниши.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section>
+        <h2>Взаимодействие и правила тест-драйва</h2>
+        <ul>
+            <li><strong>Условия и финансовые параметры:</strong> Чтобы узнать подробности о стоимости 2-месячного тестового этапа, гонораре агента и целевом бюджете на продвижение — напишите мне напрямую в Telegram. Каждый кейс ЛПР разбирается конфиденциально и точечно.</li>
+            <li><strong>Честный подход к бюджетам:</strong> Выделенный на инструменты продвижения бюджет никогда не расходуется искусственно. Весь неизрасходованный остаток переходит на следующий период работы без каких-либо ограничений.</li>
+            <li><strong>Критерий вовлеченности:</strong> Системный срыв сессий или невыполнение стратегических договоренностей со стороны эксперта — основание для мгновенного прекращения сотрудничества без возврата средств. Моё время неделимо.</li>
+        </ul>
+    </section>
+
+    <div class="final-box">
+        <h3>Первый шаг — Анкета отбора</h3>
+        <p class="subtitle" style="max-width: 750px; margin: 0 auto 30px auto;">Если вы ясно видите свой масштаб, внутренне готовы стать лидером мнений высшего эшелона и имеете большую миссию, которая способна облегчить жизнь и помочь массам — заполните анкету. После личного изучения ваших ответов мы свяжемся с вами.</p>
+        <div class="cta-group" style="justify-content: center; margin-bottom: 20px;">
+            <a href="https://forms.gle/4qBwWzMwfsxxeCA29" target="_blank" class="btn">Заполнить анкету отбора</a>
+            <a href="https://t.me/more_kastinga" target="_blank" class="btn btn-secondary">Узнать условия в TG</a>
+        </div>
+        <p style="font-size: 0.9rem; color: var(--text-muted);">Каждая анкета рассматривается Мариной Кириной лично. Ответ поступает в течение 48 часов.</p>
+    </div>
+</div>
+
+</body>
+</html>
