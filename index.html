@@ -1,374 +1,628 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Марина Кирина — Бренд-режиссер, Профайлер, Директор по кастингу</title>
-    <style>
-        :root {
-            --bg-color: #0d0f12;
-            --card-bg: #16191e;
-            --accent-color: #d4af37;
-            --accent-hover: #b59226;
-            --text-main: #f1f3f5;
-            --text-muted: #9ea4b0;
-            --border-color: #262a33;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Кастинг на масштаб — Марина Кирина</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#16140F;
+    --ink-2:#1D1B14;
+    --paper:#F2EDE1;
+    --paper-dim:#DDD6C4;
+    --spotlight:#E8A33D;
+    --spotlight-dim:#8A6224;
+    --curtain:#6E2A2A;
+    --slate:#9C978A;
+    --line:#38352A;
+    --line-light:#D8D0BC;
+    --max:920px;
+  }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
+  }
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.6;
-            padding: 0;
-            margin: 0;
-        }
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--paper);
+    font-family:'Inter',system-ui,sans-serif;
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
 
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+  h1,h2,h3,.display{
+    font-family:'Fraunces',Georgia,serif;
+    font-weight:500;
+    line-height:1.08;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
 
-        /* Header / Hero Section */
-        header {
-            padding: 60px 0 40px;
-            border-bottom: 1px solid var(--border-color);
-        }
+  a{color:inherit;}
+  img,svg{display:block; max-width:100%;}
 
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1fr 340px;
-            gap: 40px;
-            align-items: center;
-        }
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 28px;
+  }
 
-        @media (max-width: 768px) {
-            .hero-grid {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-        }
+  /* ---------- focus ---------- */
+  a:focus-visible, button:focus-visible, input:focus-visible{
+    outline:2px solid var(--spotlight);
+    outline-offset:3px;
+  }
 
-        .profile-img {
-            width: 100%;
-            max-width: 340px;
-            border-radius: 16px;
-            border: 2px solid var(--accent-color);
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.15);
-            object-fit: cover;
-        }
+  /* ---------- nav ---------- */
+  .nav{
+    position:sticky; top:0; z-index:40;
+    background:rgba(22,20,15,0.86);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    padding-top:16px; padding-bottom:16px;
+  }
+  .nav-name{
+    font-family:'Fraunces',serif;
+    font-size:19px;
+  }
+  .nav-cta{
+    background:var(--spotlight);
+    color:var(--ink);
+    padding:9px 18px;
+    border-radius:2px;
+    font-size:14px;
+    font-weight:600;
+    text-decoration:none;
+    white-space:nowrap;
+  }
+  .nav-cta:hover{background:#f0b458;}
 
-        h1 {
-            font-size: 2.8rem;
-            letter-spacing: 1px;
-            color: #ffffff;
-            margin-bottom: 10px;
-        }
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    padding:96px 0 84px;
+    overflow:hidden;
+    text-align:center;
+    background:
+      radial-gradient(ellipse 60% 55% at 50% 0%, rgba(232,163,61,0.20), transparent 65%),
+      var(--ink);
+  }
+  .beam{
+    position:absolute;
+    top:-220px; left:50%;
+    width:900px; height:640px;
+    transform:translateX(-50%);
+    background:conic-gradient(from 200deg at 50% 0%, transparent 0deg, rgba(232,163,61,0.16) 26deg, transparent 52deg);
+    filter:blur(2px);
+    pointer-events:none;
+    animation:beamIn 1.4s ease-out both;
+  }
+  @keyframes beamIn{
+    from{opacity:0; transform:translateX(-50%) translateY(-18px);}
+    to{opacity:1; transform:translateX(-50%) translateY(0);}
+  }
+  .kicker{
+    display:inline-block;
+    font-size:13.5px;
+    color:var(--spotlight);
+    border:1px solid var(--spotlight-dim);
+    padding:5px 14px;
+    border-radius:100px;
+    margin-bottom:26px;
+    position:relative;
+  }
+  .hero h1{
+    font-size:clamp(38px, 6vw, 64px);
+    max-width:820px;
+    margin:0 auto;
+    position:relative;
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--spotlight);
+  }
+  .hero p.sub{
+    max-width:520px;
+    margin:26px auto 0;
+    color:var(--slate);
+    font-size:17.5px;
+    position:relative;
+  }
+  .hero-ctas{
+    margin-top:38px;
+    display:flex; gap:14px; justify-content:center; flex-wrap:wrap;
+    position:relative;
+  }
+  .btn-primary{
+    background:var(--spotlight);
+    color:var(--ink);
+    padding:14px 30px;
+    border-radius:2px;
+    font-weight:600;
+    font-size:15px;
+    text-decoration:none;
+    display:inline-block;
+    border:none;
+    cursor:pointer;
+  }
+  .btn-primary:hover{background:#f0b458;}
+  .btn-ghost{
+    color:var(--paper);
+    padding:14px 26px;
+    border:1px solid var(--line-light);
+    border-radius:2px;
+    font-size:15px;
+    text-decoration:none;
+    display:inline-block;
+  }
+  .btn-ghost:hover{border-color:var(--paper);}
 
-        .subtitle {
-            font-size: 1.25rem;
-            color: var(--accent-color);
-            font-weight: 600;
-            margin-bottom: 20px;
-        }
+  .fact-strip{
+    margin-top:64px;
+    border-top:1px solid var(--line);
+    padding-top:28px;
+    display:flex; justify-content:center; gap:52px; flex-wrap:wrap;
+    position:relative;
+  }
+  .fact-strip div{text-align:center;}
+  .fact-strip .num{
+    font-family:'Fraunces',serif; font-size:30px; color:var(--spotlight);
+  }
+  .fact-strip .lbl{
+    font-size:13.5px; color:var(--slate); margin-top:4px;
+  }
 
-        .hero-desc {
-            font-size: 1.05rem;
-            color: var(--text-muted);
-            margin-bottom: 25px;
-        }
+  /* ---------- section shell ---------- */
+  section{padding:88px 0;}
+  .section-head{
+    max-width:640px;
+    margin-bottom:48px;
+  }
+  .section-head h2{
+    font-size:clamp(28px,3.6vw,38px);
+  }
+  .section-head p{
+    color:var(--slate);
+    margin-top:14px;
+    font-size:16.5px;
+    max-width:56ch;
+  }
+  .light{
+    background:var(--paper);
+    color:var(--ink);
+  }
+  .light .slate{color:#6B6656;}
 
-        .hero-quote {
-            background: rgba(212, 175, 55, 0.05);
-            border-left: 3px solid var(--accent-color);
-            padding: 15px 20px;
-            border-radius: 0 8px 8px 0;
-            font-style: italic;
-            margin-bottom: 30px;
-            color: #e2e8f0;
-        }
+  /* ---------- format card ---------- */
+  .file-card{
+    border:1px solid var(--line);
+    border-radius:2px;
+    padding:36px;
+    background:var(--ink-2);
+  }
+  .file-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:26px 40px;
+  }
+  @media (max-width:640px){ .file-grid{grid-template-columns:1fr;} }
+  .file-row{
+    border-bottom:1px solid var(--line);
+    padding-bottom:18px;
+  }
+  .file-row .k{
+    font-size:13.5px; color:var(--slate); margin-bottom:6px;
+  }
+  .file-row .v{
+    font-size:18px; font-family:'Fraunces',serif; font-weight:500;
+  }
 
-        .btn {
-            display: inline-block;
-            background-color: var(--accent-color);
-            color: #000000;
-            padding: 14px 28px;
-            font-weight: 700;
-            text-decoration: none;
-            border-radius: 8px;
-            transition: background 0.3s ease;
-        }
+  /* ---------- scale tool ---------- */
+  .tool{
+    background:var(--ink-2);
+    border:1px solid var(--line);
+    border-radius:2px;
+    padding:44px;
+  }
+  @media (max-width:640px){ .tool{padding:28px 22px;} }
+  .tool-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:24px;
+    margin:28px 0 8px;
+  }
+  @media (max-width:560px){ .tool-grid{grid-template-columns:1fr;} }
+  .field label{
+    display:block; font-size:14px; color:var(--slate); margin-bottom:8px;
+  }
+  .field input{
+    width:100%;
+    background:transparent;
+    border:none;
+    border-bottom:1.5px solid var(--line-light);
+    color:var(--paper);
+    font-family:'Fraunces',serif;
+    font-size:26px;
+    padding:6px 2px 10px;
+  }
+  .field input::placeholder{color:#5c5946;}
+  .tool-result{
+    margin-top:30px;
+    border-top:1px solid var(--line);
+    padding-top:26px;
+    min-height:26px;
+  }
+  .tool-result p{
+    font-size:17px;
+    max-width:64ch;
+  }
+  .tool-result .ratio{
+    color:var(--spotlight);
+    font-family:'Fraunces',serif;
+  }
+  .tool-note{
+    font-size:13.5px; color:var(--slate); margin-top:18px;
+  }
 
-        .btn:hover {
-            background-color: var(--accent-hover);
-        }
+  /* ---------- acts / steps ---------- */
+  .acts{
+    display:flex; flex-direction:column;
+  }
+  .act{
+    display:grid;
+    grid-template-columns:88px 1fr;
+    gap:22px;
+    padding:28px 0;
+    border-top:1px solid var(--line-light);
+  }
+  .light .act{border-top:1px solid var(--line-light);}
+  .act:last-child{border-bottom:1px solid var(--line-light);}
+  .act .no{
+    font-family:'Fraunces',serif; font-style:italic;
+    font-size:15px; color:var(--curtain);
+    padding-top:4px;
+  }
+  .light .act .no{color:var(--curtain);}
+  .act h3{
+    font-size:21px; margin-bottom:8px;
+  }
+  .act p{
+    color:var(--slate); font-size:15.5px; max-width:60ch;
+  }
+  .light .act p{color:#6B6656;}
 
-        /* Section Layout */
-        section {
-            padding: 60px 0;
-            border-bottom: 1px solid var(--border-color);
-        }
+  /* ---------- cases ---------- */
+  .cases{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+  }
+  @media (max-width:800px){ .cases{grid-template-columns:1fr;} }
+  .case{
+    border:1px solid var(--line);
+    background:var(--ink-2);
+    padding:26px;
+    position:relative;
+  }
+  .case .tag{
+    font-size:12.5px; color:var(--spotlight-dim); margin-bottom:14px;
+  }
+  .case h3{
+    font-size:19px; margin-bottom:10px;
+  }
+  .case p{
+    color:var(--slate); font-size:14.8px;
+  }
+  .cases-note{
+    margin-top:22px; font-size:14px; color:var(--slate); max-width:70ch;
+  }
 
-        .section-title {
-            font-size: 2rem;
-            margin-bottom: 35px;
-            color: #ffffff;
-            position: relative;
-        }
+  /* ---------- fit ---------- */
+  .fit-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:2px;
+    background:var(--line-light);
+    border:1px solid var(--line-light);
+  }
+  @media (max-width:640px){ .fit-grid{grid-template-columns:1fr;} }
+  .fit-col{background:var(--paper); padding:32px;}
+  .fit-col h3{font-size:19px; margin-bottom:16px;}
+  .fit-col ul{margin:0; padding:0; list-style:none;}
+  .fit-col li{
+    font-size:15px; padding:10px 0; border-top:1px solid var(--line-light);
+    color:#4a4636;
+  }
+  .fit-col li:first-of-type{border-top:none;}
 
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 50px;
-            height: 3px;
-            background: var(--accent-color);
-            margin-top: 10px;
-        }
+  /* ---------- urgency ---------- */
+  .urgency-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:28px;
+  }
+  @media (max-width:800px){ .urgency-grid{grid-template-columns:1fr;} }
+  .urgency-item .mark{
+    color:var(--curtain); font-family:'Fraunces',serif; font-style:italic; font-size:15px;
+  }
+  .urgency-item h3{font-size:19px; margin:10px 0 8px;}
+  .urgency-item p{color:#6B6656; font-size:15px;}
 
-        /* Stats Grid */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 20px;
-        }
+  /* ---------- final ---------- */
+  .final{
+    text-align:center;
+    padding:100px 0 110px;
+    background:var(--ink);
+  }
+  .final h2{
+    font-size:clamp(30px,4.4vw,46px);
+    max-width:640px;
+    margin:0 auto 20px;
+  }
+  .final p{color:var(--slate); max-width:480px; margin:0 auto 34px;}
 
-        .stat-card {
-            background: var(--card-bg);
-            padding: 25px;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-        }
-
-        .stat-card strong {
-            display: block;
-            font-size: 1.2rem;
-            color: var(--accent-color);
-            margin-bottom: 8px;
-        }
-
-        /* Direction Cards */
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-
-        .card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 30px;
-            border-radius: 12px;
-        }
-
-        .card h3 {
-            font-size: 1.3rem;
-            color: var(--accent-color);
-            margin-bottom: 15px;
-        }
-
-        .card ul {
-            list-style-position: inside;
-            color: var(--text-muted);
-        }
-
-        .card ul li {
-            margin-bottom: 8px;
-        }
-
-        /* Products Section */
-        .product-item {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 25px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-        }
-
-        .product-item h3 {
-            color: #ffffff;
-            margin-bottom: 10px;
-        }
-
-        .product-item p {
-            color: var(--text-muted);
-            margin-bottom: 15px;
-        }
-
-        /* Links & Contacts */
-        .links-list {
-            list-style: none;
-        }
-
-        .links-list li {
-            margin-bottom: 15px;
-        }
-
-        .links-list a {
-            color: var(--accent-color);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-
-        .links-list a:hover {
-            text-decoration: underline;
-        }
-
-        footer {
-            padding: 40px 0;
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-    </style>
+  footer{
+    border-top:1px solid var(--line);
+    padding:36px 0;
+    font-size:13.5px; color:var(--slate);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;
+  }
+</style>
 </head>
 <body>
 
-<div class="container">
-    <!-- Hero Section -->
-    <header>
-        <div class="hero-grid">
-            <div>
-                <h1>МАРИНА КИРИНА</h1>
-                <div class="subtitle">Бренд-режиссер • Директор по кастингу • Агент актеров • Эксперт по верификации личности и мотивов</div>
-                <p class="hero-desc">
-                    Снимаю маски и очищаю от иллюзий бизнес, найм и личные союзы. 20 лет в ТВ-кастингах, более 800&nbsp;000 проведенных собеседований. 18 лет веду актеров высшей лиги. Более 100 успешных союзов в жизни и бизнесе. 30 лет в счастливом браке (в 2026 году — серебряная свадьба).
-                </p>
-                <div class="hero-quote">
-                    «Неважно, строите ли вы бизнес, ищете продюсера, развиваете личный бренд или создаете семью. Успех в любом деле зависит от одного: умеют ли люди слышать, чувствовать друг друга и видеть реальность без самообмана».
-                </div>
-                <a href="https://t.me/Zakroi_geshtalt/2256" target="_blank" class="btn">Забрать разбор: Как «идеальный» топ слил бюджет</a>
-            </div>
-            <div>
-                <img src="2026-05-28 14.52.02 2.jpg" alt="Марина Кирина" class="profile-img">
-            </div>
-        </div>
-    </header>
+<nav class="nav">
+  <div class="wrap">
+    <span class="nav-name">Марина Кирина</span>
+    <a class="nav-cta" href="#заявка">Пройти диагностику</a>
+  </div>
+</nav>
 
-    <!-- Background & Scale -->
-    <section>
-        <h2 class="section-title">Масштаб и опыт в цифрах</h2>
-        <div class="stats-grid">
-            <div class="stat-card">
-                <strong>20 лет в ТВ-кастингах</strong>
-                Создание 50+ крупнейших проектов для ведущих федеральных каналов: Первый канал, ТНТ, СТС, Пятница!, Россия, Disney, Перец, ТВ-3, МУЗ-ТВ, Матч ТВ и др.
-            </div>
-            <div class="stat-card">
-                <strong>800 000+ собеседований</strong>
-                Глубокий профайлинг, где за 3 минуты считывается реальная личность, а не заученная роль.
-            </div>
-            <div class="stat-card">
-                <strong>1 000+ медийных личностей</strong>
-                Раскрыла потенциал и дала старт звездам и топ-менеджерам медиаиндустрии: Лев Смольников, Влад Кадони, сестры Колисниченко, Олег Майами и десятки других.
-            </div>
-            <div class="stat-card">
-                <strong>18 лет — Актерский агент</strong>
-                Лично веду и продюсирую актера Андрея Пынзару. Прошли путь от молодого парня из Молдовы, мечтавшего о кино, до востребованного актера-миллионера.
-            </div>
-            <div class="stat-card">
-                <strong>100+ созданных союзов</strong>
-                Сваха и соединитель судеб: более 100 успешных и крепких союзов в бизнесе и личной жизни сложились благодаря точному считыванию мотивов.
-            </div>
-            <div class="stat-card">
-                <strong>30 лет в счастливом браке</strong>
-                Личный практический фундамент того, как строить глубокие, честные и крепкие отношения без иллюзий, манипуляций и фальши.
-            </div>
-        </div>
-    </section>
+<header class="hero">
+  <div class="beam" aria-hidden="true"></div>
+  <div class="wrap">
+    <span class="kicker">Закрытый набор — следующий поток</span>
+    <h1>Кастинг на <em>твой масштаб</em></h1>
+    <p class="sub">21 год я решаю, кто выходит на свет, а кто остаётся за кадром. Сейчас смотрю не на актёров — на предпринимателей и экспертов, чей реальный масштаб рынок пока не разглядел.</p>
+    <div class="hero-ctas">
+      <a class="btn-primary" href="#заявка">Оставить заявку на диагностику</a>
+      <a class="btn-ghost" href="#кейсы">Смотреть кейсы</a>
+    </div>
+    <div class="fact-strip">
+      <div><div class="num">21 год</div><div class="lbl">в кастинге</div></div>
+      <div><div class="num">800 000+</div><div class="lbl">интервью и кастингов</div></div>
+      <div><div class="num">30 сек</div><div class="lbl">чтобы увидеть масштаб</div></div>
+    </div>
+  </div>
+</header>
 
-    <!-- Work Directions -->
-    <section>
-        <h2 class="section-title">С чем ко мне обращаются</h2>
-        <div class="cards-grid">
-            <div class="card">
-                <h3>1. Межличностные отношения и семья</h3>
-                <ul>
-                    <li>Выход из замкнутого круга ошибок при выборе спутника жизни.</li>
-                    <li>Распознавание манипуляций, масок и скрытых мотивов на первых этапах общения.</li>
-                    <li>Построение союза на десятилетия без самообмана.</li>
-                </ul>
-            </div>
-            <div class="card">
-                <h3>2. Раскрытие потенциала и Личный Бренд</h3>
-                <ul>
-                    <li>Выход экспертов, актеров и лидеров на новый уровень масштаба, медийности и гонораров.</li>
-                    <li>Формирование зерна личности и авторская бренд-режиссура.</li>
-                </ul>
-            </div>
-            <div class="card">
-                <h3>3. Проверка подрядчиков и продюсеров</h3>
-                <ul>
-                    <li>Защита экспертов от «красивых продавцов услуг».</li>
-                    <li>Верификация продюсеров, маркетологов, SMM и партнеров-пустышек до передачи бюджетов.</li>
-                </ul>
-            </div>
-            <div class="card">
-                <h3>4. Найм топов и партнерство в бизнесе</h3>
-                <ul>
-                    <li>Аудит ключевых управленцев (CEO, COO) и защита от «глянцевых резюме».</li>
-                    <li>Проверка сооснователей (Co-founders) и инвесторов перед входом в сделки.</li>
-                </ul>
-            </div>
+<section id="формат">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Что это по факту</h2>
+      <p>Не курс и не марафон. Закрытая группа, где каждый доходит до собственного честного позиционирования — и до чека, который этому позиционированию соответствует.</p>
+    </div>
+    <div class="file-card">
+      <div class="file-grid">
+        <div class="file-row">
+          <div class="k">Формат</div>
+          <div class="v">Закрытая группа, до 10 человек</div>
         </div>
-    </section>
-
-    <!-- Product Line -->
-    <section>
-        <h2 class="section-title">Форматы работы и продукты</h2>
-        
-        <div class="product-item">
-            <h3> Бесплатный разбор (Точка входа)</h3>
-            <p><strong>«Чек-лист: 5 вопросов из ТВ-кастингов, которые срывают маски с топов»</strong> — Разбор кейса: как «идеальный» управленец слил бюджет за 2 месяца, а кастинг-метод вскрыл обман за 15 минут.</p>
-            <a href="https://t.me/Zakroi_geshtalt/2256" target="_blank" class="btn">Перейти в Telegram и забрать чек-лист</a>
+        <div class="file-row">
+          <div class="k">Длительность</div>
+          <div class="v">2 месяца, встречи раз в неделю</div>
         </div>
-
-        <div class="product-item">
-            <h3> Практикумы и мини-продукты</h3>
-            <p>• <strong>«Тест на фальшь: Проверка партнера в бизнесе, инвестициях и жизни»</strong> — экспресс-система верификации мотивов и выявления масок.</p>
-            <p>• <strong>«Красные флаги подрядчиков и продюсеров»</strong> — как не слить деньги на маркетологов и партнеров-пустышек.</p>
+        <div class="file-row">
+          <div class="k">Кто ведёт</div>
+          <div class="v">Марина лично, без кураторов на диагностике</div>
         </div>
-
-        <div class="product-item">
-            <h3> Индивидуальный аудит и Сопровождение</h3>
-            <p>• <strong>«Найм управленца / Подрядчика»</strong> — личное участие в собеседовании и вынесение вердикта risk-free.</p>
-            <p>• <strong>«Бренд-режиссура и Агентское сопровождение»</strong> — продвижение актеров и экспертов.</p>
-            <p>• <strong>«Аудит межличностных отношений»</strong> — глубокая консультационная работа и сопровождение союзов.</p>
+        <div class="file-row">
+          <div class="k">Вход</div>
+          <div class="v">Через диагностику масштаба, отбор есть</div>
         </div>
-    </section>
+        <div class="file-row">
+          <div class="k">Кому подходит</div>
+          <div class="v">Экспертам и предпринимателям с опытом, не новичкам</div>
+        </div>
+        <div class="file-row" style="border-bottom:none;">
+          <div class="k">После ядра</div>
+          <div class="v">Опция сопровождения — для тех, кто действует</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Proofs & Media -->
-    <section>
-        <h2 class="section-title">Знакомство и медиа</h2>
-        <ul class="links-list">
-            <li>📺 <a href="https://youtu.be/Hpc5TMpK8lU?si=1kg-4GmFB6gOHg0B" target="_blank">Интервью Марины Кириной о медиа-опыте на YouTube</a> — откройте, чтобы глубже познакомиться с подходом и жизненным путем в ТВ.</li>
-            <li>📄 <a href="https://teletype.in/@marinakirina/kuzma_lojnikov" target="_blank">Разбор кейса Кузьмы Ложникова на Teletype</a></li>
-            <li>💬 <a href="https://telegram.me/keys_otziv_M_lb" target="_blank">Telegram-канал с кейсами и отзывами клиентов</a></li>
+<section class="light" id="масштаб">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Увидеть разрыв за 30 секунд</h2>
+      <p>Не тест и не гороскоп — короткий честный расчёт. Впиши два числа и посмотри, какой разрыв уже виден.</p>
+    </div>
+    <div class="tool" style="background:var(--ink-2); border-color:var(--line);">
+      <div class="tool-grid">
+        <div class="field">
+          <label for="current">Твой чек сейчас, ₽</label>
+          <input type="number" id="current" inputmode="numeric" placeholder="150 000">
+        </div>
+        <div class="field">
+          <label for="known">Чек, который, ты знаешь, тебе по силам, ₽</label>
+          <input type="number" id="known" inputmode="numeric" placeholder="500 000">
+        </div>
+      </div>
+      <button class="btn-primary" id="calc-btn" type="button" style="margin-top:8px;">Показать разрыв</button>
+      <div class="tool-result" id="tool-result" aria-live="polite"></div>
+      <p class="tool-note">Разрыв — это ориентир для разговора, а не диагноз. Настоящий стопор за ним я называю на живой диагностике, не по формуле.</p>
+    </div>
+  </div>
+</section>
+
+<section id="путь">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Путь внутри потока</h2>
+      <p>Шесть действий, а не список уроков — каждое меняет состояние, а не просто добавляет знание.</p>
+    </div>
+    <div class="acts">
+      <div class="act">
+        <div class="no">Действие I</div>
+        <div><h3>Отбор</h3><p>Фильтр на входе: кто реально готов работать над собой, а не просто хочет «стать звездой». Берём не всех.</p></div>
+      </div>
+      <div class="act">
+        <div class="no">Действие II</div>
+        <div><h3>Цель и миссия</h3><p>Не предполагаем заранее, что цель — деньги. Каждый называет свою настоящую цель на поток — своими словами.</p></div>
+      </div>
+      <div class="act">
+        <div class="no">Действие III</div>
+        <div><h3>Демонтаж стопора</h3><p>Групповые зеркальные разборы: другие участники говорят, что видят в тебе, включая то, что сам не осознавал.</p></div>
+      </div>
+      <div class="act">
+        <div class="no">Действие IV</div>
+        <div><h3>Бренд-режиссура</h3><p>Собираем аутентичное ядро — без копирования чужих шаблонов и без модной терминологии, которая тебе не принадлежит.</p></div>
+      </div>
+      <div class="act">
+        <div class="no">Действие V</div>
+        <div><h3>Позиционирование и оффер</h3><p>Переводим ядро в рыночный язык — и, если цель про деньги, в конкретную цифру чека.</p></div>
+      </div>
+      <div class="act">
+        <div class="no">Действие VI</div>
+        <div><h3>Защита стратегии</h3><p>Каждый называет вслух перед группой свои первые шаги — план действий, а не вдохновение без него.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="light" id="кейсы">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Досье: до этого формата</h2>
+      <p>Этот поток — первый набор именно в таком виде. Но метод, на котором он строится, уже проверен на людях, которых я вела к их масштабу годами.</p>
+    </div>
+    <div class="cases">
+      <div class="case">
+        <div class="tag">Дело — Ростов-на-Дону</div>
+        <h3>Продавец бытовой техники</h3>
+        <p>Пришёл на кастинг, не мог толком рассказать о себе. Через год — своя машина и первый бизнес. Сейчас — бренд-амбассадор Mercedes, несколько бизнесов в Дубае, семья.</p>
+      </div>
+      <div class="case">
+        <div class="tag">Дело — Балаково</div>
+        <h3>Лев Смольников</h3>
+        <p>Прошёл кастинг-процесс — и стал директором в команде Ксении Бородиной, сейчас сам лично отбирает партнёров и клиентов в работе с ней. Они стали настоящими партнёрами.</p>
+      </div>
+      <div class="case">
+        <div class="tag">Дело — Санкт-Петербург</div>
+        <h3>Кузьма, кондитер</h3>
+        <p>Вывела на федеральное ТВ и бесплатно организовала 20+ коллабораций с блогерами. Позже — участник шоу «Кондитер» на «Пятнице».</p>
+      </div>
+    </div>
+    <p class="cases-note">Это истории из моей практики за 21 год кастинга и продюсирования — они и стали причиной, почему этот формат вообще появился. Кейсы именно этого потока появятся честно, по факту, после первого набора — я не буду выдавать чужой опыт за результаты того, что здесь только запускается.</p>
+  </div>
+</section>
+
+<section id="кому">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Кому это и кому точно нет</h2>
+    </div>
+    <div class="fit-grid">
+      <div class="fit-col">
+        <h3>Подходит, если</h3>
+        <ul>
+          <li>У тебя уже есть опыт, метод и результаты — но чек застрял на месте</li>
+          <li>Рынок видит тебя ниже, чем ты есть на самом деле</li>
+          <li>Готов(а) назвать вслух то, что обычно прячешь</li>
+          <li>Хочешь работать, а не получать разбор и ничего не делать</li>
         </ul>
-    </section>
+      </div>
+      <div class="fit-col">
+        <h3>Не подходит, если</h3>
+        <ul>
+          <li>Ищешь продюсера, который сделает всё за тебя</li>
+          <li>Ждёшь результата без собственных действий</li>
+          <li>Хочешь просто «стать звездой» без работы над собой</li>
+          <li>Ты новичок без своего опыта и метода</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Contacts -->
-    <section>
-        <h2 class="section-title">Контакты и связь</h2>
-        <p style="margin-bottom: 20px; font-size: 1.1rem; color: var(--text-muted);">
-            Опишите вашу ситуацию (отношения, раскрытие потенциала, продюсирование, бизнес-партнерство или найм), и мы определим точную стратегию решения.
-        </p>
-        <p style="font-size: 1.1rem; margin-bottom: 10px;"><strong>Telegram:</strong> <a href="https://telegram.me/more_kastinga" target="_blank" style="color: var(--accent-color);">@more_kastinga</a></p>
-        <p style="font-size: 1.1rem; margin-bottom: 10px;"><strong>Email:</strong> <a href="mailto:kasting_director@mail.ru" style="color: var(--accent-color);">kasting_director@mail.ru</a></p>
-        <p style="font-size: 1.1rem; margin-bottom: 25px;"><strong>Телефон:</strong> +7 (926) 537-18-44</p>
-        <a href="https://telegram.me/more_kastinga" target="_blank" class="btn">Написать Марине Кириной в Telegram</a>
-    </section>
+<section class="light" id="сейчас">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Почему сейчас, а не через полгода</h2>
+    </div>
+    <div class="urgency-grid">
+      <div class="urgency-item">
+        <div class="mark">Рынок</div>
+        <h3>Обесценивание уже идёт</h3>
+        <p>Просто знания и красивая подача больше не продают — рынок платит за результат и за честность, которую видно сразу. Ждать «более удобного момента» — значит опоздать вместе с остальными, кто ждёт того же.</p>
+      </div>
+      <div class="urgency-item">
+        <div class="mark">Группа</div>
+        <h3>Мест немного не для вида</h3>
+        <p>Зеркальные разборы работают только в маленькой группе — если группа вырастет, личное внимание исчезнет. Это не приём, а ограничение самого метода.</p>
+      </div>
+      <div class="urgency-item">
+        <div class="mark">Цена ожидания</div>
+        <h3>Каждый месяц на старом чеке — это не пауза</h3>
+        <p>Пока позиционирование не пересобрано, разница между текущим чеком и тем, что уже по силам, продолжает копиться — тихо, каждый месяц, независимо от того, работаешь ты над этим или нет.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <footer>
-        <p>© 2026 Марина Кирина. Все права защищены.</p>
-    </footer>
-</div>
+<section class="final" id="заявка">
+  <div class="wrap">
+    <h2>Диагностика начинается с одного честного разговора</h2>
+    <p>30–40 минут, без обязательств. Я скажу прямо, вижу ли смысл в этом потоке для тебя — и почему.</p>
+    <a class="btn-primary" href="https://t.me/Zakroi_geshtalt">Написать в Telegram</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; width:100%;">
+    <span>Марина Кирина — Архитектор смыслов</span>
+    <span>t.me/Zakroi_geshtalt</span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('calc-btn').addEventListener('click', function () {
+    var cur = parseFloat(document.getElementById('current').value);
+    var known = parseFloat(document.getElementById('known').value);
+    var out = document.getElementById('tool-result');
+
+    if (!cur || !known || cur <= 0 || known <= 0) {
+      out.innerHTML = '<p>Впиши оба числа — сейчас и то, что, ты сама знаешь, тебе по силам.</p>';
+      return;
+    }
+
+    var ratio = known / cur;
+    var ratioText = ratio.toFixed(1).replace('.0', '');
+
+    var line;
+    if (ratio <= 1) {
+      line = 'По твоим числам разрыва нет — тогда дело не в чеке, а в чём-то другом. На диагностике разберёмся, в чём именно.';
+    } else if (ratio < 1.5) {
+      line = 'Разрыв в <span class="ratio">' + ratioText + '×</span> — заметный, но рабочий. Обычно за ним стоит один конкретный шаг, который давно пора сделать.';
+    } else if (ratio < 3) {
+      line = 'Разрыв в <span class="ratio">' + ratioText + '×</span> — это не про «поднажать», а про то, что рынок видит тебя не такой(им), какая(ой) ты есть на самом деле.';
+    } else {
+      line = 'Разрыв в <span class="ratio">' + ratioText + '×</span> — большой. Это почти всегда означает, что дело не в навыках, а в одном стопоре, который держит всё на месте.';
+    }
+
+    out.innerHTML = '<p>' + line + '</p>';
+  });
+</script>
 
 </body>
 </html>
